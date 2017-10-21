@@ -5,39 +5,31 @@ const puppeteer = require('puppeteer');
 
 
 browsePage = async (element, index) => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({executablePath: '/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome'})
   const page = await browser.newPage();
   await page.goto(element.link); //default 1000
   const url = await page.evaluate(() => {
     return document.getElementsByTagName("iframe")[0].src
   })
-  getVideoInfo(url, index)
-  await browser.close()
+  await getVideoInfo(url, index, browser)
+  //await browser.close()
 }
 
-getVideoInfo = async (link, index) => {
-  const browser = await puppeteer.launch();
+getVideoInfo = async (link, index, browser) => {
+  console.log(link)
   const page = await browser.newPage();
   await page.goto(link); //default 1000
   await page.screenshot({path: `${index}.png`, fullPage: true});
   const duration = await page.evaluate(async () => {
     return new Promise((resolve, reject) => {
       var video = document.getElementsByTagName("video")[0];
-      video.load();
+      var videoDuration = 0;
+      video.addEventListener('loadedmetadata', function() {
+        resolve(video.duration);
+      });
       video.play();
-      setTimeout(() => {
-        resolve(video.currentTime);
-      }, 10000)
     })
-    /*
-    var video = document.getElementsByTagName("video")[0];
-    var videoDuration = 0;
-    video.addEventListener('loadedmetadata', function() {
-      videoDuration = video.duration;
-    });
-    setInterval(()=> {video.play();}, 100);*/
   });
-  console.log("lafin");
   console.log(duration);
   await browser.close()
 }
