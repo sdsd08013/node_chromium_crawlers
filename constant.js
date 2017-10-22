@@ -1,6 +1,6 @@
-class Urls {
+module.exports = class Urls {
   constructor() {
-  api_key = 'kvaq7prj7saqwsvpll64r866k0igxuntnjlnbkhu'
+  var api_key = 'kvaq7prj7saqwsvpll64r866k0igxuntnjlnbkhu'
   this.SITE_0 = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fzurineta.net%2Ffeed'
   this.SITE_1 = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffc2-adult.com%2F%3Fxml'
   this.SITE_2 = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fsenzuritv.net%2Ffeed'
@@ -83,4 +83,5 @@ class Urls {
   this.SITE_79 = `https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fdougan-bijo-douga.info%2Ffeed&api_key=${api_key}`
   this.SITE_80 = `https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fmaniahentai.com%2Ffeed&api_key=${api_key}`
   this.SITE_81 = `https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.deepfera.com%2Ffeed%2F&api_key=${api_key}`
-end
+  }
+}

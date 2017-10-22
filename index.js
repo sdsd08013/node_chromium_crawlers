@@ -2,6 +2,7 @@ const fs = require('fs');
 const request = require('request');
 const assert = require('assert');
 const puppeteer = require('puppeteer');
+const Urls = require('./constant');
 
 
 browsePage = async (element, index) => {
@@ -35,8 +36,9 @@ getVideoInfo = async (link, index, browser) => {
 
 
 function getJson() {
+  var url = new Urls();
   var options = {
-    url: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.deepfera.com%2Ffeed%2F&api_key=kvaq7prj7saqwsvpll64r866k0igxuntnjlnbkhu',
+    url: url.SITE_81,
     method: 'GET',
     json: true,
   }
