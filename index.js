@@ -12,14 +12,14 @@ browsePage = async (element, index) => {
     return document.getElementsByTagName("iframe")[0].src
   })
   await getVideoInfo(url, index, browser)
-  //await browser.close()
+  await browser.close()
 }
 
 getVideoInfo = async (link, index, browser) => {
   console.log(link)
-  const page = await browser.newPage();
-  await page.goto(link); //default 1000
-  await page.screenshot({path: `${index}.png`, fullPage: true});
+  const page = await browser.newPage()
+  await page.goto(link)
+  await page.screenshot({path: `${index}.png`, fullPage: true})
   const duration = await page.evaluate(async () => {
     return new Promise((resolve, reject) => {
       var video = document.getElementsByTagName("video")[0];
@@ -31,7 +31,6 @@ getVideoInfo = async (link, index, browser) => {
     })
   });
   console.log(duration);
-  await browser.close()
 }
 
 
